@@ -67,11 +67,9 @@ validpgpkeys=(
 if [[ ${_build_vfio::1} == "t" ]] ; then
   source+=(
     1001-6.6.7-add-acs-overrides.patch # updated from https://lkml.org/lkml/2013/5/30/513
-    1002-6.6.7-i915-vga-arbiter.patch  # updated from https://lkml.org/lkml/2014/5/9/517
   )
   sha256sums+=(
     'f342986bd27980c96c952b0dd8103d3e21a942d87f18df1308fab370e20010fb'
-    '2a3c732d4d61a631c98b2a3e4afb1fa5dbf8be5c43519b2a59d0e65170c9d8db'
   )
 fi
 
@@ -187,7 +185,7 @@ build() {
 }
 
 _package() {
-  pkgdesc="The $pkgdesc kernel and modules (ACS override and i915 VGA arbiter patches)"
+  pkgdesc="The $pkgdesc kernel and modules (ACS override)"
   depends=(
     coreutils
     initramfs
@@ -223,7 +221,7 @@ _package() {
 }
 
 _package-headers() {
-  pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel (ACS override and i915 VGA arbiter patches)"
+  pkgdesc="Headers and scripts for building modules for the $pkgdesc kernel (ACS override)"
   depends=(pahole)
 
   cd $_srcname
@@ -305,7 +303,7 @@ _package-headers() {
 }
 
 _package-docs() {
-  pkgdesc="Documentation for the $pkgdesc kernel (ACS override and i915 VGA arbiter patches)"
+  pkgdesc="Documentation for the $pkgdesc kernel (ACS override)"
 
   cd $_srcname
   local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
